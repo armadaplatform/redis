@@ -1,0 +1,13 @@
+[Unit]
+Description=redis-master
+After=armada.service
+Requires=armada.service
+
+[Service]
+TimeoutStartSec=5
+Type=oneshot
+ExecStart=/usr/local/bin/armada run redis-master -v '[local_directory]:/var/redis' --env production --app_id=myapp
+ExecStop=/usr/local/bin/armada stop redis-master
+
+[Install]
+WantedBy=multi-user.target

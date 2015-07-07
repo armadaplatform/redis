@@ -1,0 +1,11 @@
+{
+	"name": "redis",
+	"description": "",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+	  	"lodash": "2.4.x",
+		"mu2": "~0.5.20"
+	}
+}
+
