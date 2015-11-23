@@ -39,9 +39,9 @@ redis master instance, it should look like this:
     
 - Build this service, and run master and slave intances using docker tag. 
 Keep in mind, that master instance should be located on different machine than 
-slave instance, but within same armada cluster (obviously).
+slave instance, but within same armada cluster.
 This example script builds service on one machine, then sends it over to 
-anotherone through local dockyard.
+another one through local dockyard.
 
 On **ship1**
 
