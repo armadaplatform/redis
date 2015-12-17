@@ -1,7 +1,7 @@
 FROM microservice_node
 MAINTAINER Cerebro <cerebro@ganymede.eu>
 
-RUN apt-get install -y git
+RUN apt-get install -y git make
 
 # Install Redis.
 RUN \
