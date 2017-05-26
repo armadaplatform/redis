@@ -7,5 +7,5 @@ fi
 
 redis-cli -p 80 info | grep master_link_status:down
 if [[ $? -eq 0 ]]; then
-    exit 2
+    exit 1
 fi
