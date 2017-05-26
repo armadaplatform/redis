@@ -1,7 +1,7 @@
 FROM microservice_node
 MAINTAINER Cerebro <cerebro@ganymede.eu>
 
-RUN apt-get install -y git make
+RUN apt-get install -y git make g++
 
 # Install Redis.
 RUN \
@@ -15,19 +15,13 @@ RUN \
 	cp -f src/redis-sentinel /usr/local/bin && \
 	mkdir -p /etc/redis
 
-RUN mkdir /var/redis
-RUN mkdir /var/log/redis
+RUN mkdir -p /var/redis /var/log/redis
 
+ADD ./supervisor/* /etc/supervisor/conf.d/
 ADD ./ /opt/redis
-ADD ./supervisor/run-redis.conf /etc/supervisor/conf.d/run-redis.conf
 
-ADD ./health-checks/health-redis.sh /opt/microservice/health-checks/
-RUN rm -f /opt/microservice/health-checks/http-ok
-RUN rm -f /opt/microservice/health-checks/main-port-open
-
-RUN cd /opt/redis ; npm install
+RUN cd /opt/redis && npm install
 # Define mountable directories.
 VOLUME ["/var/redis"]
 
-# Expose ports.
 EXPOSE 80
