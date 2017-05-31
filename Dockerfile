@@ -1,14 +1,16 @@
-FROM microservice_node
+FROM microservice_python3
 MAINTAINER Cerebro <cerebro@ganymede.eu>
 
-RUN apt-get install -y git make g++
+ENV CONFIG_DIR /opt/redis/confs
+
+RUN apt-get install -y make
 
 # Install Redis.
 RUN \
 	cd /tmp && \
 	mkdir redis-stable && \
-	curl http://download.redis.io/releases/redis-2.8.17.tar.gz | \
-	tar xvz -C 'redis-stable' --strip-components=1 && \
+	curl -s http://download.redis.io/releases/redis-3.2.9.tar.gz | \
+	tar xz -C 'redis-stable' --strip-components=1 && \
 	cd redis-stable && \
 	make && \
 	make install && \
@@ -20,7 +22,6 @@ RUN mkdir -p /var/redis /var/log/redis
 ADD ./supervisor/* /etc/supervisor/conf.d/
 ADD ./ /opt/redis
 
-RUN cd /opt/redis && npm install
 # Define mountable directories.
 VOLUME ["/var/redis"]
 
