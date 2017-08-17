@@ -43,3 +43,7 @@ To restore master instance from slave's data follow these steps:
     - `armada run redis -d armada -r myservice-redis-master -v /var/opt/myservice-redis-master:/var/redis --env dev`
 - On a different machine, start slave instance 
     - `armada run redis -d armada -r myservice-redis-slave -v /var/opt/myservice-redis-master:/var/redis --env dev`
+
+## Hints
+- Remove all keys matching specified key prefix  
+`EVAL "return redis.call('del', unpack(redis.call('keys', ARGV[1])))" 0 <prefix>:*"`
