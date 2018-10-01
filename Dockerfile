@@ -1,15 +1,15 @@
 FROM microservice_python3
 MAINTAINER Cerebro <cerebro@ganymede.eu>
 
-ENV CONFIG_DIR /opt/redis/confs
+ENV REDIS_VERSION  4.0.11
 
 RUN apt-get install -y make
-
+RUN pip install redis
 # Install Redis.
 RUN \
 	cd /tmp && \
 	mkdir redis-stable && \
-	curl -s http://download.redis.io/releases/redis-3.2.9.tar.gz | \
+	curl -s "http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz" | \
 	tar xz -C 'redis-stable' --strip-components=1 && \
 	cd redis-stable && \
 	make && \
