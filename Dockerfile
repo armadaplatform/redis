@@ -2,7 +2,6 @@ FROM microservice_python3
 MAINTAINER Cerebro <cerebro@ganymede.eu>
 
 ENV REDIS_VERSION  4.0.11
-ENV CONFIG_DIR /opt/redis/config
 
 RUN apt-get install -y make
 RUN pip install redis

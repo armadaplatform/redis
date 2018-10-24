@@ -48,10 +48,9 @@ To restore master instance from slave's data follow these steps:
 default:
 - if redis-server is running and responding to `PING`.
 - if redis is running as slave, Armada checks if connection to master works.
+- if redis eviction policy is `noeviction`, warn level is set by `used_memory_warn_level_proc` 
+from config file `config/health-checks.json`
 
-### Optional
-- memory-usage - to enable checking data memory usage edit `config/health-checks.json`
-  and customize `used_memory_warn_level_proc`  
 
 ## Hints
 - Remove all keys matching specified key prefix  
